@@ -7,6 +7,9 @@ namespace Net.Chdk.Detectors.Software.Fhp
 {
     sealed class FhpSoftwareDetector : ProductBinarySoftwareDetector
     {
+        private const string CameraPlatform = "400D";
+        private const string CameraRevision = "111";
+
         public FhpSoftwareDetector(ISourceProvider sourceProvider)
             : base(sourceProvider)
         {
@@ -44,6 +47,16 @@ namespace Net.Chdk.Detectors.Software.Fhp
         protected override CultureInfo GetLanguage(string[] strings)
         {
             return CultureInfo.GetCultureInfo("en");
+        }
+
+        protected override string GetPlatform(string[] strings)
+        {
+            return CameraPlatform;
+        }
+
+        protected override string GetRevision(string[] strings)
+        {
+            return CameraRevision;
         }
     }
 }
