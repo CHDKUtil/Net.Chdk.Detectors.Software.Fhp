@@ -84,6 +84,10 @@
       <Project>{18181475-991A-41F3-9BBE-F0F0916D8814}</Project>
       <Name>Net.Chdk.Detectors.Software.Binary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Net.Chdk.Detectors.Software.Core\src\Net.Chdk.Detectors.Software.Core\Net.Chdk.Detectors.Software.Core.csproj">
+      <Project>{d385ab93-0db5-45aa-994a-5e4b671bef40}</Project>
+      <Name>Net.Chdk.Detectors.Software.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Net.Chdk.Providers.Boot.Core\src\Net.Chdk.Providers.Boot.Core\Net.Chdk.Providers.Boot.Core.csproj">
       <Project>{4e4fa15a-4a88-4caf-a8e1-fc507177ead4}</Project>
       <Name>Net.Chdk.Providers.Boot.Core</Name>
