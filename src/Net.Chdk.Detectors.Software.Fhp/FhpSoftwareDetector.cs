@@ -1,4 +1,4 @@
-﻿using Net.Chdk.Detectors.Software.Binary;
+﻿using Net.Chdk.Detectors.Software.Product;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Globalization;
