@@ -22,26 +22,36 @@ namespace Net.Chdk.Detectors.Software.Fhp
 
         protected override int StringCount => 2;
 
-        protected override Version GetProductVersion(string[] strings)
+        protected override bool GetProductVersion(string[] strings, out Version version, out string versionPrefix, out string versionSuffix)
         {
+            version = null;
+            versionPrefix = null;
+            versionSuffix = null;
+
             if (!"%u".Equals(strings[1], StringComparison.InvariantCulture))
-                return null;
+                return false;
 
             var split = strings[0].Split('-');
             if (split.Length != 2)
-                return null;
+                return false;
 
             DateTime date;
             if (!DateTime.TryParseExact(split[0], "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out date))
-                return null;
+                return false;
 
             if ("BETA".Equals(split[1], StringComparison.InvariantCulture))
-                return new Version(date.Year, date.Month, date.Day);
+            {
+                versionSuffix = "BETA";
+                version = new Version(date.Year, date.Month, date.Day);
+                return true;
+            }
 
             int revision;
             if (!int.TryParse(split[1], out revision))
-                return null;
-            return new Version(date.Year, date.Month, date.Day, revision);
+                return false;
+
+            version = new Version(date.Year, date.Month, date.Day, revision);
+            return true;
         }
 
         protected override CultureInfo GetLanguage(string[] strings)
