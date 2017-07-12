@@ -1,5 +1,6 @@
 ﻿using Net.Chdk.Detectors.Software.Product;
 using Net.Chdk.Providers.Boot;
+using Net.Chdk.Providers.Product;
 using System;
 using System.Globalization;
 
@@ -7,12 +8,11 @@ namespace Net.Chdk.Detectors.Software.Fhp
 {
     sealed class FhpProductDetector : ProductDetector
     {
-        public FhpProductDetector(IBootProviderResolver bootProviderResolver)
-            : base(bootProviderResolver)
+        public FhpProductDetector(IProductProvider productProvider, IBootProvider bootProvider)
+            : base(productProvider, bootProvider)
         {
         }
 
-        public override string CategoryName => "EOS";
         protected override string ProductName => "400plus";
 
         protected override Version GetVersion(string rootPath)
