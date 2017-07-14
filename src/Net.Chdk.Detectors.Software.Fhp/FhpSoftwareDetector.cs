@@ -1,4 +1,5 @@
 ﻿using Net.Chdk.Detectors.Software.Product;
+using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Globalization;
@@ -10,12 +11,11 @@ namespace Net.Chdk.Detectors.Software.Fhp
         private const string CameraPlatform = "400D";
         private const string CameraRevision = "111";
 
-        public FhpSoftwareDetector(ISourceProvider sourceProvider)
-            : base(sourceProvider)
+        public FhpSoftwareDetector(IProductProvider productProvider, ISourceProvider sourceProvider)
+            : base(productProvider, sourceProvider)
         {
         }
 
-        public override string CategoryName => "EOS";
         public override string ProductName => "400plus";
 
         protected override string String => "VER-";
