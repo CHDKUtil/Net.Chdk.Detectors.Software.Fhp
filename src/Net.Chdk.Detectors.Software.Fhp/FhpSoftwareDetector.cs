@@ -54,7 +54,7 @@ namespace Net.Chdk.Detectors.Software.Fhp
 
         protected override CultureInfo GetLanguage(string[] strings)
         {
-            return new CultureInfo("en");
+            return GetCultureInfo("en");
         }
 
         protected override string GetPlatform(string[] strings)
