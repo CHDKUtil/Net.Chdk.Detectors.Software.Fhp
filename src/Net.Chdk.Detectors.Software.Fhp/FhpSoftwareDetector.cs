@@ -28,26 +28,24 @@ namespace Net.Chdk.Detectors.Software.Fhp
             versionPrefix = null;
             versionSuffix = null;
 
-            if (!"%u".Equals(strings[1], StringComparison.InvariantCulture))
+            if (!"%u".Equals(strings[1], StringComparison.Ordinal))
                 return false;
 
             var split = strings[0].Split('-');
             if (split.Length != 2)
                 return false;
 
-            DateTime date;
-            if (!DateTime.TryParseExact(split[0], "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out date))
+            if (!DateTime.TryParseExact(split[0], "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out DateTime date))
                 return false;
 
-            if ("BETA".Equals(split[1], StringComparison.InvariantCulture))
+            if ("BETA".Equals(split[1], StringComparison.Ordinal))
             {
                 versionSuffix = "BETA";
                 version = new Version(date.Year, date.Month, date.Day);
                 return true;
             }
 
-            int revision;
-            if (!int.TryParse(split[1], out revision))
+            if (!int.TryParse(split[1], out int revision))
                 return false;
 
             version = new Version(date.Year, date.Month, date.Day, revision);
@@ -56,7 +54,7 @@ namespace Net.Chdk.Detectors.Software.Fhp
 
         protected override CultureInfo GetLanguage(string[] strings)
         {
-            return CultureInfo.GetCultureInfo("en");
+            return new CultureInfo("en");
         }
 
         protected override string GetPlatform(string[] strings)
